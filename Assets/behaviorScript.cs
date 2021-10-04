@@ -5,49 +5,91 @@ using UnityEngine;
 public class behaviorScript : MonoBehaviour
 {
 
-    // Update is called once per frame
-public AudioClip musicClipOne;
+ public AudioClip musicClipOne;
 
 public AudioClip musicClipTwo;
 
 public AudioSource musicSource;
 
-// Update is called once per frame
-void Update()
+Animator anim;
+
+void Start()
+
 {
-     if (Input.GetKeyDown(KeyCode.W))
+
+  anim = GetComponent<Animator>();
+
+}
+
+// Update is called once per frame
+
+void Update()
+
+{
+   if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Application.Quit();
+        }
+
+     if (Input.GetKeyDown(KeyCode.W))
+
+        {
+
           musicSource.clip = musicClipOne;
+
           musicSource.Play();
+
+          anim.SetInteger("state", 1);
 
          }
 
      if (Input.GetKeyUp(KeyCode.W))
+
         {
+
           musicSource.Stop();
+
+          anim.SetInteger("state", 0);
 
          }
 
      if (Input.GetKeyDown(KeyCode.R))
+
         {
+
           musicSource.clip = musicClipTwo;
+
           musicSource.Play();
+
+          anim.SetInteger("state", 2);
+
          }
 
      if (Input.GetKeyUp(KeyCode.R))
+
         {
+
           musicSource.Stop();
+
+          anim.SetInteger("state", 0);
 
          }
 
      if (Input.GetKeyDown(KeyCode.L))
+
         {
+
           musicSource.loop = true;
+
          }
 
      if (Input.GetKeyUp(KeyCode.L))
+
         {
+
           musicSource.loop = false;
+
         }
-   }
+
+    }
 }
